@@ -1,0 +1,394 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Product<sup>service</sup><small> Version Management</small></h1>
+<div class="row">
+
+	<div class="col-lg-4">
+
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="fa fa-sort-amount-asc"></i>
+					제품(서비스) 조회 및 선택</h6>
+			</div>
+			<div class="card-body">
+				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
+					<a class="navbar-brand" style="font-size: 12px;">1. 제품(서비스) 선택</a>
+				</nav>
+				<div class="clearfix widget-content">
+					<div style="float: left;">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+								id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+							Export
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" id="copychecker">Copy</a>
+							<a class="dropdown-item" id="csvchecker">CSV</a>
+							<a class="dropdown-item" id="excelchecker">Excel</a>
+							<a class="dropdown-item" id="printchecker">Print</a>
+							<a class="dropdown-item" id="pdfchecker">PDF</a>
+						</div>
+					</div>
+					<div style="float: right;">
+						<button class="btn btn-warning" type="button"
+								 style="float: right;" data-toggle="modal"
+								onClick="goToTemplatePage('pdService')">
+							제품(서비스) 관리로 이동
+						</button>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="pdservice_datatable" width="100%" cellspacing="0">
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-lg-3">
+
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="fa fa-edit"></i>
+					제품(서비스) Version 조회</h6>
+			</div>
+			<div class="card-body">
+				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
+					<a class="navbar-brand" style="font-size: 12px;">2. 선택된 제품(서비스) 버전 조회</a>
+				</nav>
+				<div class="widget-content clearfix" style="margin: 10px 0 10px;">
+					<div class="card border-left-secondary">
+						<div class="card-body" style="padding: 8px 10px!important;">
+							선택된 제품(서비스) :
+							<span
+									class="select_pdService"
+									style="color: #316ad1; font-weight: bold;">
+										선택되지 않음
+							</span>
+						</div>
+					</div>
+					<div
+							id="pdservice_version_registry_popup_div"
+							style="display: none;">
+						<!--class="side-button"-->
+						<button	style="width: 100%;"
+								type="button"
+								data-target="#detailPdServiceVersionModal"
+								data-toggle="modal"
+								id="extend_modal_new"
+							   	onClick="modalPopup('modal_popup_new')"
+								class="btn btn-primary">
+							신규 버전 등록하기
+						</button>
+					</div>
+				</div>
+				<div
+						class="panel-group"
+						id="version_accordion"></div>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="pdservice_version_datatable" width="100%" cellspacing="0">
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-lg-5">
+
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="fa fa-edit"></i>
+					제품(서비스) 버전 등록 / 변경</h6>
+			</div>
+			<div class="card-body">
+				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
+					<a class="navbar-brand" style="font-size: 12px;">3. 제품(서비스)의 버전 내용을 확인하고 편집/삭제</a>
+				</nav>
+				<div class="widget-content clearfix">
+					<div style="float: left;">
+						<div class="card border-left-secondary">
+							<div class="card-body" style="padding: 8px 10px!important;">
+								선택된 제품(서비스) :
+								<span
+										class="select_pdService"
+										style="color: #316ad1; font-weight: bold;">
+											선택되지 않음
+								</span><br>
+								선택된 버전 :
+								<span
+										id="select_version"
+										style="color: #316ad1; font-weight: bold;">
+											선택되지 않음
+								</span><br>
+							</div>
+						</div>
+					</div>
+					<div	class="side-button"
+							style="float: right"
+							id="pdservice_version_details_popup_div">
+						<button
+								type="button"
+								data-target="#detailPdServiceVersionModal"
+								data-toggle="modal"
+								id="extend_modal_readOnly"
+								class="btn btn-warning"
+								onClick="modalPopup('modal_popup_readonly')">
+							팝업 창으로 보기
+						</button>
+					</div>
+					<div	class="hidden side-button"
+							style="float: right"
+							id="pdservice_update_div">
+						<button
+								class="btn btn-warning"
+								data-target="#detailPdServiceVersionModal"
+								data-toggle="modal"
+								id="extend_modal_popup_id"
+								type="button"
+								onClick="modalPopup('modal_popup_update')">
+							팝업 창으로 편집 하기
+						</button>
+						<button
+								type="button"
+								id="pdservice_version_update"
+								class="btn btn-success">
+							제품(서비스) 변경 사항 저장
+						</button>
+					</div>
+					<div	class="hidden side-button"
+							style="float: right"
+							id="pdservice_version_delete_div">
+						<button
+								id="delete_pdservice_version"
+								class="btn btn-danger">
+							버전 삭제
+						</button>
+					</div>
+				</div>
+
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" id="detail_nav_pdService" data-toggle="tab" href="#detail_tab_pdService_version"><strong>상세 보기</strong></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="edit_nav_pdService" data-toggle="tab" href="#edit_tab_pdService_version"><strong>편집 하기</strong></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="delete_nav_pdService" data-toggle="tab" href="#delete_tab_pdService_version"><strong>삭제 하기</strong></a>
+					</li>
+				</ul>
+				<div class="tab-content" style="border: 1px solid #e3e6f0;
+												border-top: none;
+												border-radius: 0.35rem;">
+
+					<div class="tab-pane fade show active" id="detail_tab_pdService_version">
+						<div class="card-body pt-4 pb-0">
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_name">제품(서비스) 이름 : </label>
+								<input class="form-control" type="text"
+									   disabled="disabled"
+									   placeholder="Product or Service Name"
+									   id="detailview_pdservice_name"
+									   name="detailview_pdservice_name">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version">버전 : </label>
+								<input class="form-control" type="text"
+									   disabled="disabled"
+									   placeholder="x.x.x"
+									   id="detailview_pdservice_version"
+									   name="detailview_pdservice_version">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version_start_date">시작 날짜 : </label>
+								<input class="form-control" type="text"
+									   disabled="disabled"
+									   placeholder="yyyy/mm/dd"
+									   id="detailview_pdservice_version_start_date"
+									   name="detailview_pdservice_version_start_date">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version_end_date">종료 날짜 : </label>
+								<input class="form-control" type="text"
+									   disabled="disabled"
+									   placeholder="yyyy/mm/dd"
+									   id="detailview_pdservice_version_end_date"
+									   name="detailview_pdservice_version_end_date">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body mb-2" for="detailview_pdservice_version_contents">버전 내용 : </label>
+								<div id="detailview_pdservice_version_contents">
+									<p>버전의 기획서 및 Version Charter 의 내용을 기록합니다.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="edit_tab_pdService_version">
+						<div class="card-body pt-4 pb-0">
+							<div class="mb-2">
+								<label class="form-label text-body" for="editview_pdservice_name">제품(서비스) 이름 : </label>
+								<input class="form-control" type="text"
+									   placeholder="Product or Service Name"
+									   disabled="disabled"
+									   id="editview_pdservice_name"
+									   name="editview_pdservice_name">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version">버전 : </label>
+								<input class="form-control" type="text"
+									   placeholder="x.x.x"
+									   id="editview_pdservice_version"
+									   name="editview_pdservice_version">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version_start_date">시작 날짜 : </label>
+								<input class="form-control" type="text"
+									   placeholder="yyyy/mm/dd"
+									   id="editview_pdservice_version_start_date"
+									   name="editview_pdservice_version_start_date">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_version_end_date">종료 날짜 : </label>
+								<input class="form-control" type="text"
+									   placeholder="yyyy/mm/dd"
+									   id="editview_pdservice_version_end_date"
+									   name="editview_pdservice_version_end_date">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body mb-2" for="editview_pdservice_version_contents">버전 내용 : </label>
+								<div id="editview_pdservice_version_contents">
+									<p>버전의 기획서 및 Version Charter 의 내용을 기록합니다.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="delete_tab_pdService_version">
+						<div class="card-body">
+							<p>
+								제품(서비스) "
+								<label
+										id="delete_text"
+										style="color: #007fff; font-weight: bold"></label>
+								"을(를) 삭제 하시겠습니까?
+							</p>
+							<br />
+							<p>
+								<strong>Jira 프로젝트에서 제품(서비스)와 연관된 버전은 삭제되지 않습니다.</strong>
+							</p>
+							<br />
+							<p>
+								<strong>( 주의하세요 ) A-RMS 의 버전 하위 요구사항은 삭제됩니다.</strong>
+							</p>
+							<p>
+								<strong>( 주의하세요 ) 삭제된 요구사항과 연결된 Jira 이슈는 유지됩니다.</strong>
+							</p>
+							<p>
+								<strong>( 주의하세요 ) 삭제된 요구사항은 통계에 반영되지 않습니다.</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<!--<div class="modal fade" id="addPdServiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true" style="padding:20px!important;">
+	<div class="modal-dialog" role="document" style="max-width: 90%!important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i>신규 제품(서비스) 등록 팝업</h6>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" id="addPdServiceButton">신규 제품(서비스) 저장</a>
+			</div>
+		</div>
+	</div>
+</div>-->
+
+<div class="modal fade" id="detailPdServiceVersionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+	 aria-hidden="true" style="padding:20px!important;">
+	<div class="modal-dialog" role="document" style="max-width: 90%!important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">
+					<i class="fa fa-edit"></i><span id="detail_pdService_version_modal_title">-</span>
+					<div class="card border-left-danger" style="margin-top: 10px;">
+						<div class="card-body" id="detail_pdService_version_modal_sub" style="border: 0px solid #ffffff;">
+							-
+						</div>
+					</div>
+				</h6>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_name">제품(서비스) 이름 : </label>
+					<input class="form-control" type="text"
+						   placeholder="Product or Service Name"
+						   disabled="disabled"
+						   id="popup_view_pdservice_name"
+						   name="popup_view_pdservice_name">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_version">버전 : </label>
+					<input class="form-control" type="text"
+						   placeholder="Product or Service Owner"
+						   id="popup_view_pdservice_version"
+						   name="popup_view_pdservice_version">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_version_start_date">시작 날짜 : </label>
+					<input class="form-control" type="text"
+						   placeholder="yyyy/mm/dd"
+						   id="popup_view_pdservice_version_start_date"
+						   name="popup_view_pdservice_version_start_date">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_version_end_date">종료 날짜 : </label>
+					<input class="form-control" type="text"
+						   placeholder="yyyy/mm/dd"
+						   id="popup_view_pdservice_version_end_date"
+						   name="popup_view_pdservice_version_end_date">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body mb-2">버전 내용 : </label>
+					<div id="modal_editor">
+						<p>버전의 내용 및 Version Charter 의 내용을 기록합니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal" id="close_version">Cancel</button>
+				<button
+						type="button"
+						id="regist_pdservice_version"
+						class="btn btn-primary ladda ladda-button">
+					신규 버전 등록
+				</button>
+				<button
+						type="button"
+						id="extendupdate_pdservice_version"
+						class="btn btn-success ladda ladda-button">
+					버전 정보 변경
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

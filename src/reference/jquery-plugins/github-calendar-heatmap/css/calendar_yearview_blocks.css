@@ -1,0 +1,34 @@
+.svg-tip {
+    padding: 10px;
+    background: #191919;
+    opacity: 0.8;
+    color: #eee;
+    font-size: 12px;
+    position: absolute;
+    z-index: 99999;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.svg-tip:after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    height: 5px;
+    width: 5px;
+    margin: 0 0 0 -5px;
+    content: " ";
+    border: 5px solid transparent;
+    /*border-top-color: rgba(0,0,0,0.8);
+    bottom: -10px;*/
+    border-bottom-color: rgba(0,0,0,0.8); /* 수정된 부분: border-bottom-color 속성으로 아래쪽 선 색상 지정 */
+    top: -10px; /* 수정된 부분: top 속성으로 위치 조정 */
+
+}
+
+.wday, .month {
+    font-variant: small-caps;
+    color: #222222;
+    font-size: 12px;
+}

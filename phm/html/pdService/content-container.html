@@ -1,0 +1,445 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Product.service <small>Management</small></h1>
+
+<div class="row">
+
+	<div class="col-lg-5">
+
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="fa fa-sort-amount-asc"></i>
+					제품(서비스) 조회 및 선택</h6>
+			</div>
+			<div class="card-body">
+				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
+					<a class="navbar-brand" style="font-size: 12px;">1. 제품(서비스) 선택</a>
+				</nav>
+				<div class="clearfix widget-content">
+					<div style="float: left;">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+								id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+							Export
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" id="copychecker">Copy</a>
+							<a class="dropdown-item" id="csvchecker">CSV</a>
+							<a class="dropdown-item" id="excelchecker">Excel</a>
+							<a class="dropdown-item" id="printchecker">Print</a>
+							<a class="dropdown-item" id="pdfchecker">PDF</a>
+						</div>
+					</div>
+					<div style="float: right;">
+						<button class="btn btn-primary" type="button"
+								 style="float: right;" data-toggle="modal" data-target="#detailPdServiceModal"
+								onClick="modalPopup('modal_popup_new')">
+							제품(서비스) 추가
+						</button>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="pdservice_datatable" width="100%" cellspacing="0">
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-lg-7">
+
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="fa fa-edit"></i>
+					제품(서비스) 상세 보기 / 변경</h6>
+			</div>
+			<div class="card-body">
+				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
+					<a class="navbar-brand" style="font-size: 12px;">2. 제품(서비스)의 내용을 확인하고 편집/삭제</a>
+				</nav>
+				<div class="widget-content clearfix">
+					<div style="float: left;">
+						<div class="card border-left-secondary">
+							<div class="card-body" style="padding: 8px 10px!important;">
+								선택된 제품(서비스) :
+								<span
+										id="select_Service"
+										style="color: #316ad1; font-weight: bold;">
+											선택되지 않음
+								</span>
+							</div>
+						</div>
+					</div>
+					<div	class="side-button"
+							style="float: right"
+							id="pdservice_details_popup_div">
+						<button
+								type="button"
+								data-target="#detailPdServiceModal"
+								data-toggle="modal"
+								id="extend_modal_readOnly"
+								class="btn btn-warning"
+								onClick="modalPopup('modal_popup_readonly')">
+							새 창으로 제품(서비스) 내용 보기
+						</button>
+					</div>
+					<div	class="hidden side-button"
+							style="float: right"
+							id="pdservice_update_div">
+						<button
+								class="btn btn-warning"
+								data-target="#detailPdServiceModal"
+								data-toggle="modal"
+								id="extend_modal_popup_id"
+								type="button"
+								onClick="modalPopup('modal_popup_update')">
+							팝업 창으로 편집 하기
+						</button>
+						<button
+								type="button"
+								id="pdservice_update"
+								class="btn btn-success">
+							제품(서비스) 변경 사항 저장
+						</button>
+					</div>
+					<div	class="hidden side-button"
+							style="float: right"
+							id="pdservice_delete_div">
+<!--						<a id="delete_pdservice" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+							<span class="text">제품(서비스) 삭제</span>
+						</a>-->
+						<button
+								id="delete_pdservice"
+								class="btn btn-danger">
+							제품(서비스) 삭제
+						</button>
+					</div>
+				</div>
+
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" id="detail_nav_pdService" data-toggle="tab" href="#detail_tab_pdService"><strong>상세 보기</strong></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="edit_nav_pdService" data-toggle="tab" href="#edit_tab_pdService"><strong>편집 하기</strong></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="delete_nav_pdService" data-toggle="tab" href="#delete_tab_pdService"><strong>삭제 하기</strong></a>
+					</li>
+				</ul>
+				<div class="tab-content" style="border: 1px solid #e3e6f0;
+												border-top: none;
+												border-radius: 0.35rem;">
+
+					<div class="tab-pane fade show active" id="detail_tab_pdService">
+						<div class="card-body pt-4 pb-0">
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_name">제품(서비스) 이름 : </label>
+								<input class="form-control" type="text"
+									   placeholder="Product or Service Name"
+									   disabled="disabled"
+									   id="detailview_pdservice_name"
+									   name="detailview_pdservice_name">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="detailview_pdservice_owner">제품(서비스) 오너 : </label>
+								<input class="form-control" type="text"
+									   placeholder="Product or Service Owner"
+									   id="detailview_pdservice_owner"
+									   name="detailview_pdservice_owner">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body">제품(서비스) 리뷰어 : </label>
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="detailview_pdservice_reviewer01"
+									   name="detailview_pdservice_reviewer01">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="detailview_pdservice_reviewer02"
+									   name="detailview_pdservice_reviewer02">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="detailview_pdservice_reviewer03"
+									   name="detailview_pdservice_reviewer03">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="detailview_pdservice_reviewer04"
+									   name="detailview_pdservice_reviewer04">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="detailview_pdservice_reviewer05"
+									   name="detailview_pdservice_reviewer05">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body mb-2">제품(서비스) 컨텐츠 : </label>
+								<div id="detailview_pdservice_contents">
+									<p>제품(서비스)의 기획서 및 Project Charter 의 내용을 기록합니다.</p>
+								</div>
+								<!--<div class="form-control" style="height: auto;" id="detailview_pdservice_contents"></div>-->
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="edit_tab_pdService">
+						<div class="card-body pt-4 pb-0">
+							<div class="mb-2">
+								<label class="form-label text-body" for="editview_pdservice_name">제품(서비스) 이름 : </label>
+								<input class="form-control" type="text"
+									   placeholder="Product or Service Name"
+									   disabled="disabled"
+									   id="editview_pdservice_name"
+									   name="editview_pdservice_name">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body" for="editview_pdservice_owner">제품(서비스) 오너 : </label>
+								<input class="form-control" type="text"
+									   placeholder="Product or Service Owner"
+									   id="editview_pdservice_owner"
+									   name="editview_pdservice_owner">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body">제품(서비스) 리뷰어 : </label>
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="editview_pdservice_reviewer01"
+									   name="editview_pdservice_reviewer01">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="editview_pdservice_reviewer02"
+									   name="editview_pdservice_reviewer02">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="editview_pdservice_reviewer03"
+									   name="editview_pdservice_reviewer03">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="editview_pdservice_reviewer04"
+									   name="editview_pdservice_reviewer04">
+								<input class="form-control" type="text" name="name"
+									   placeholder="Product or Service Reviewer"
+									   id="editview_pdservice_reviewer05"
+									   name="editview_pdservice_reviewer05">
+							</div>
+							<div class="mb-2">
+								<label class="form-label text-body mb-2">제품(서비스) 컨텐츠 : </label>
+								<div class="controls form-group">
+									<div id="input_pdservice_editor">
+										<p>제품(서비스)의 기획서 및 Project Charter 의 내용을 기록합니다.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--						<div>
+                                                    <form
+                                                            class="form-horizontal"
+                                                            method="post">
+                                                        <fieldset>
+                                                            <div
+                                                                    class="control-group"
+                                                                    for="editview_pdservice_name">
+                                                                <label class="control-label font13">제품(서비스) 이름 :</label>
+                                                                <div
+                                                                        class="controls form-group input-group"
+                                                                        style="margin-left: 180px">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="glyphicon glyphicon-gift"></i>
+                                                                            </span>
+                                                                    <input
+                                                                            type="text"
+                                                                            id="editview_pdservice_name"
+                                                                            name="editview_pdservice_name"
+                                                                            class="form-control parsley-validated font13 darkBack"
+                                                                            data-placement="top"
+                                                                            data-original-title="수정은 편집 탭에서 해주세요"
+                                                                            required="required"
+                                                                            placeholder="service name"
+                                                                            readonly
+                                                                            style="border: 0px !important; color: #a4c6ff !important" />
+                                                                    <span class="input-group-addon font11">INFO : 제품(서비스) 명은 중복 될 수 없습니다.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                    class="control-group"
+                                                                    for="editview_pdservice_owner">
+                                                                <label class="control-label font13">제품(서비스) 오너 :</label>
+                                                                <div
+                                                                        class="controls form-group input-group"
+                                                                        style="margin-left: 180px">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="glyphicon glyphicon-user"></i>
+                                                                            </span>
+                                                                    <select
+                                                                            type="text"
+                                                                            id="editview_pdservice_owner"
+                                                                            name="editview_pdservice_owner"
+                                                                            class="js-data-example-ajax form-control parsley-validated font13 darkBack"
+                                                                            data-placement="top"
+                                                                            data-original-title="책임자 변경"
+                                                                            required="required"
+                                                                            placeholder="service name"
+                                                                            style="border: 0px !important; color: #a4c6ff !important"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                    class="control-group"
+                                                                    for="editview_pdservice_reviewers">
+                                                                <label class="control-label font13">제품(서비스) 리뷰어 :</label>
+                                                                <div
+                                                                        class="controls form-group input-group"
+                                                                        style="margin-left: 180px">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="glyphicon glyphicon-inbox"></i>
+                                                                            </span>
+                                                                    <select
+                                                                            type="text"
+                                                                            id="editview_pdservice_reviewers"
+                                                                            name="selectedReviewers[]"
+                                                                            multiple="multiple"
+                                                                            class="js-data-example-ajax form-control parsley-validated font13 darkBack"
+                                                                            data-placement="top"
+                                                                            data-original-title="제품(서비스) 리뷰어는 최대 5명입니다."
+                                                                            required="required"
+                                                                            placeholder="service name"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="control-group">
+                                                                <label
+                                                                        class="control-label"
+                                                                        style="color: #f8f8f8">
+                                                                    제품(서비스) 컨텐츠 :
+                                                                </label>
+                                                                <div class="controls form-group">
+                                                                    <div
+                                                                            class="col-sm-12"
+                                                                            style="padding-top: 10px">
+                                                                        <div id="input_pdservice_editor">
+                                                                            <p>제품(서비스)의 기획서 및 Project Charter 의 내용을 기록합니다.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>-->
+					</div>
+					<div class="tab-pane fade" id="delete_tab_pdService">
+						<div class="card-body">
+							<p>
+								제품(서비스) "
+								<label
+										id="delete_text"
+										style="color: #007fff; font-weight: bold"></label>
+								"을(를) 삭제 하시겠습니까?
+							</p>
+							<br />
+							<p>
+								<strong>Jira 프로젝트에서 제품(서비스)와 연관된 버전은 삭제되지 않습니다.</strong>
+							</p>
+							<br />
+							<p>
+								<strong>( 주의하세요 ) A-RMS 의 버전 하위 요구사항은 삭제됩니다.</strong>
+							</p>
+							<p>
+								<strong>( 주의하세요 ) 삭제된 요구사항과 연결된 Jira 이슈는 유지됩니다.</strong>
+							</p>
+							<p>
+								<strong>( 주의하세요 ) 삭제된 요구사항은 통계에 반영되지 않습니다.</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal fade" id="detailPdServiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+	 aria-hidden="true" style="padding:20px!important;">
+	<div class="modal-dialog" role="document" style="max-width: 90%!important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">
+					<i class="fa fa-edit"></i><span id="detail_pdService_modal_title">-</span>
+					<div class="card border-left-danger" style="margin-top: 10px;">
+						<div class="card-body" id="detail_pdService_modal_sub" style="border: 0px solid #ffffff;">
+							-
+						</div>
+					</div>
+				</h6>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_name">제품(서비스) 이름 : </label>
+					<input class="form-control" type="text"
+						   placeholder="Product or Service Name"
+						   id="popup_view_pdservice_name"
+						   name="popup_view_pdservice_name">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body" for="popup_view_pdservice_owner">제품(서비스) 오너 : </label>
+					<input class="form-control" type="text"
+						   placeholder="Product or Service Owner"
+						   id="popup_view_pdservice_owner"
+						   name="popup_view_pdservice_owner">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body">제품(서비스) 리뷰어 : </label>
+					<input class="form-control" type="text" name="name"
+						   placeholder="Product or Service Reviewer"
+						   id="popup_view_pdservice_reviewer01"
+						   name="popup_view_pdservice_reviewer01">
+					<input class="form-control" type="text" name="name"
+						   placeholder="Product or Service Reviewer"
+						   id="popup_view_pdservice_reviewer02"
+						   name="popup_view_pdservice_reviewer02">
+					<input class="form-control" type="text" name="name"
+						   placeholder="Product or Service Reviewer"
+						   id="popup_view_pdservice_reviewer03"
+						   name="popup_view_pdservice_reviewer03">
+					<input class="form-control" type="text" name="name"
+						   placeholder="Product or Service Reviewer"
+						   id="popup_view_pdservice_reviewer04"
+						   name="popup_view_pdservice_reviewer04">
+					<input class="form-control" type="text" name="name"
+						   placeholder="Product or Service Reviewer"
+						   id="popup_view_pdservice_reviewer05"
+						   name="popup_view_pdservice_reviewer05">
+				</div>
+				<div class="mb-2">
+					<label class="form-label text-body mb-2">제품(서비스) 컨텐츠 : </label>
+					<div id="modal_editor">
+						<p>제품(서비스)의 기획서 및 Project Charter 의 내용을 기록합니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal" id="close_pdservice">Cancel</button>
+				<button
+						type="button"
+						id="regist_pdservice"
+						class="btn btn-primary ladda ladda-button">
+					신규 제품(서비스) 저장
+				</button>
+				<button
+						type="button"
+						id="extendupdate_pdservice"
+						class="btn btn-success ladda ladda-button">
+					제품(서비스) 변경 사항 저장
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

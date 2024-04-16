@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta
+				http-equiv="Content-Type"
+				content="text/html;charset=utf-8" />
+		<meta
+				http-equiv="Cache-Control"
+				content="no-cache" />
+		<meta
+				http-equiv="Pragma"
+				content="no-cache" />
+		<meta
+				http-equiv="imagetoolbar"
+				content="no" />
+		<meta
+				http-equiv="content-Script-type"
+				content="text/javascript" />
+		<meta
+				http-equiv="content-Style-type"
+				content="text/css" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>SB Admin 2 - Dashboard</title>
+
+<!--		<link
+				href="/src/reference/light-blue/css/bootstrap-original/bootstrap.css"
+				rel="stylesheet"
+				type="text/css"
+				media="screen" />-->
+
+		<link
+				href="/src/reference/jquery-plugins/normalize.css-8.0.1/normalize.css"
+				rel="stylesheet"
+				type="text/css"
+				media="screen" />
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="/src/reference/jquery-plugins/html5shiv.js"></script>
+		<script src="/src/reference/jquery-plugins/respond.js"></script>
+		<![endif]-->
+
+		<!-- common libraries. required for every page-->
+		<script
+				type="text/javascript"
+				src="/src/reference/lightblue4/docs/lib/jquery/dist/jquery.js"
+				charset="utf-8"></script>
+		<script
+				type="text/javascript"
+				src="/src/reference/lightblue4/docs/lib/jquery-ui/jquery-ui.min.js"
+				charset="utf-8"></script>
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/jquery-cookie-1.4.1/jquery.cookie.js"
+				charset="utf-8"></script>
+<!--		<script
+				type="text/javascript"
+				src="/src/reference/lightblue4/docs/lib/bootstrap-sass/assets/javascripts/bootstrap.min.js"
+				charset="utf-8"></script>-->
+
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/jnotify_v2.1/jquery/jNotify.jquery.min.js"
+				charset="utf-8"></script>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="/src/reference/jquery-plugins/jnotify_v2.1/jquery/jNotify.jquery.css"
+				media="screen" />
+
+		<!-- Ladda -->
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/Ladda-jQuery-0.6.0/dist/spin.min.js"
+				charset="utf-8"></script>
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/Ladda-jQuery-0.6.0/js/ladda.js"
+				charset="utf-8"></script>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="/src/reference/jquery-plugins/Ladda-jQuery-0.6.0/dist/ladda.css"
+				media="screen" />
+
+		<!-- notification popup -->
+<!--		<script
+				src="/src/reference/lightblue4/docs/lib/messenger/build/js/messenger.min.js"
+				charset="utf-8"></script>
+		<script
+				src="/src/reference/lightblue4/docs/lib/messenger/build/js/messenger-theme-flat.js"
+				charset="utf-8"></script>-->
+
+		<!-- ckeditor4 성능 이슈로 인한 주석 처리. -->
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/ckeditor4-4.22.1/ckeditor.js"
+				charset="utf-8"></script>
+
+		<!-- page interaction -->
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/topbar.js"
+				charset="utf-8"></script>
+
+		<!-- page js -->
+		<script
+				type="text/javascript"
+				src="/phm/js/common.js"
+				charset="utf-8"></script>
+		<script
+				type="text/javascript"
+				src="/src/reference/lightblue4/docs/js/app.js"
+				charset="utf-8"></script>
+
+		<script
+				type="text/javascript"
+				src="/src/reference/jquery-plugins/ckeditor4-4.22.1/ckeditor.js"
+				charset="utf-8"></script>
+
+		<!-- Custom fonts for this template-->
+		<link
+				href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+				rel="stylesheet">
+
+		<!-- Custom styles for this template-->
+		<link href="/src/assets/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="/src/assets/css/sb-admin-icons.css" rel="stylesheet">
+		<link href="/src/assets/css/override_sb_admin.css" rel="stylesheet">
+
+	</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+	<!-- Sidebar -->
+	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+		id="accordionSidebar" data-include="html/template/page-sidebar.html"></ul>
+	<!-- End of Sidebar -->
+
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+
+		<!-- Main Content -->
+		<div id="content">
+
+			<!-- Topbar -->
+			<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+				 data-include="html/template/page-header.html"></nav>
+			<!-- End of Topbar -->
+
+			<!-- Begin Page Content -->
+			<div class="container-fluid"
+				 data-include="html/template/content-container.html"></div>
+			<!-- /.container-fluid -->
+
+		</div>
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white"
+				data-include="html/template/content-footer.html"></footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" id="logout">Logout</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+ <script src="/phm/html/sb-admin/vendor/jquery/jquery.min.js"></script>
+<script src="/phm/html/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/phm/html/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script>
+
+	(function ($) {
+		$("#logout").click(function (event) {
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			$.ajax({
+				url: "/logout",
+				type: "post",
+				contentType: "application/json;charset=UTF-8",
+				statusCode: {
+					200: function (data) {
+						location.href = "/";
+					},
+
+				},
+				beforeSend: function () {
+				},
+				complete: function () {
+				}
+			});
+
+
+		});
+	})(jQuery);
+
+</script>
+<!-- Custom scripts for all pages-->
+<!--<script src="./html/sb-admin/js/sb-admin-2.min.js"></script>-->
+
+</body>
+
+</html>
