@@ -31,8 +31,8 @@
 					</div>
 					<div style="float: right;">
 						<button class="btn btn-primary" type="button"
-								 style="float: right;" data-toggle="modal"
-								onClick="goToTemplatePage('pdService')">
+								 style="float: right;" data-toggle="modal" data-target="#detailALMServerModal"
+								onClick="modalPopup('modal_popup_new')">
 							ALM Server 등록
 						</button>
 					</div>
@@ -162,7 +162,7 @@
 				<nav class="navbar navbar-expand navbar-light bg-light mb-2">
 					<a class="navbar-brand" style="font-size: 12px;">3. 제품(서비스)의 버전 내용을 확인하고 편집/삭제</a>
 				</nav>
-				<div class="widget-content clearfix"">
+				<div class="widget-content clearfix">
 					<div style="float: left;">
 						<div class="card border-left-secondary">
 							<div class="card-body" style="padding: 8px 10px!important;">
@@ -372,13 +372,13 @@
 	</div>
 </div>-->
 
-<div class="modal fade" id="detailPdServiceVersionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+<div class="modal fade" id="detailALMServerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
 	 aria-hidden="true" style="padding:20px!important;">
 	<div class="modal-dialog" role="document" style="max-width: 90%!important;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h6 class="modal-title">
-					<i class="fa fa-edit"></i><span id="detail_pdService_version_modal_title">-</span>
+					<i class="fa fa-edit"></i><span id="detail_alm_server_modal_title">-</span>
 					<div class="card border-left-danger" style="margin-top: 10px;">
 						<div class="card-body" id="detail_pdService_version_modal_sub" style="border: 0px solid #ffffff;">
 							-
@@ -431,13 +431,13 @@
 				<button class="btn btn-secondary" type="button" data-dismiss="modal" id="close_version">Cancel</button>
 				<button
 						type="button"
-						id="regist_pdservice_version"
+						id="regist_alm_server"
 						class="btn btn-primary ladda ladda-button">
-					신규 버전 등록
+					서버 등록
 				</button>
 				<button
 						type="button"
-						id="extendupdate_pdservice_version"
+						id="extendupdate_alm_server"
 						class="btn btn-success ladda ladda-button">
 					버전 정보 변경
 				</button>

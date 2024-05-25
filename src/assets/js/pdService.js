@@ -64,12 +64,12 @@ function execDocReady() {
 			////////////////////////////////////////////////////////////////////////////////////////
 
 			//vfs_fonts 파일이 커서 defer 처리 함.
-			setTimeout(function () {
-				var script = document.createElement("script");
-				script.src = "../reference/jquery-plugins/dataTables-1.10.16/extensions/Buttons/js/vfs_fonts.js";
-				script.defer = true; // defer 속성 설정
-				document.head.appendChild(script);
-			}, 3000); // 3초 후에 실행됩니다.
+			// setTimeout(function () {
+			// 	var script = document.createElement("script");
+			// 	script.src = "../reference/jquery-plugins/dataTables-1.10.16/extensions/Buttons/js/vfs_fonts.js";
+			// 	script.defer = true; // defer 속성 설정
+			// 	document.head.appendChild(script);
+			// }, 3000); // 3초 후에 실행됩니다.
 			console.log('모든 플러그인 로드 완료');
 
             // common.js에서 fullName과 userName으로 헤더에 이름과 아이콘 바인딩

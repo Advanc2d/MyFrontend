@@ -517,12 +517,12 @@ function modalPopup(popupName) {
 		console.log(popupName + " 신규 버전 등록 팝업");
 		//modal_popup_readOnly = 새 창으로 제품(서비스 보기)
 		modalPopupDataBindingClear();
-		$("#regist_pdservice_version").removeClass("hidden");
+		$("#regist_alm_server").removeClass("hidden");
 		$("#popup_view_pdservice_name").attr("disabled", true);
 
-		$("#detail_pdService_version_modal_title").text("제품(서비스) 신규 버전 등록 팝업");
-		$("#detail_pdService_version_modal_sub").text("선택한 제품(서비스)에 버전을 등록합니다.");
-		$("#extendupdate_pdservice_version").addClass("hidden");
+		$("#detail_alm_server_modal_title").text(" 신규 ALM 서버 등록 팝업");
+		$("#detail_pdService_version_modal_sub").text(" A-RMS에 ALM 서버를 등록합니다.");
+		$("#extendupdate_alm_server").addClass("hidden");
 		$("#new_pdservice_save").removeClass("hidden");
 	}
 	else if (popupName === "modal_popup_readonly") {
@@ -530,9 +530,9 @@ function modalPopup(popupName) {
 		$("#popup_view_pdservice_name").attr("disabled",true);
 		console.log(popupName + " 제품 내용 보기 팝업");
 
-		$("#detail_pdService_version_modal_title").text("제품(서비스) 버전 확인 팝업");
+		$("#detail_alm_server_modal_title").text("제품(서비스) 버전 확인 팝업");
 		$("#detail_pdService_version_modal_sub").text("새 창으로 제품(서비스)의 버전 정보를 확인합니다.");
-		$("#extendupdate_pdservice_version").addClass("hidden");
+		$("#extendupdate_alm_server").addClass("hidden");
 		$("#new_pdservice_save").addClass("hidden");
 
 		modalPopupDataBinding(true);
@@ -541,10 +541,10 @@ function modalPopup(popupName) {
 		console.log(popupName + " 제품 수정 팝업");
 		$("#popup_view_pdservice_name").attr("disabled",true);
 
-		$("#detail_pdService_version_modal_title").text(" 제품(서비스) 버전 변경 팝업");
+		$("#detail_alm_server_modal_title").text(" 제품(서비스) 버전 변경 팝업");
 		$("#detail_pdService_version_modal_sub").text("A-RMS에 제품(서비스)의 정보를 수정합니다.");
 		$("#new_pdservice_save").addClass("hidden");
-		$("#extendupdate_pdservice_version").removeClass("hidden");
+		$("#extendupdate_alm_server").removeClass("hidden");
 
 		// 데이터 셋팅
 		modalPopupDataBinding(false);
@@ -561,17 +561,17 @@ function modalPopupDataBindingClear() {
 }
 
 function modalPopupDataBinding(isReadOnly) {
-	/*$("#detail_pdService_version_modal_title").text(" 신규 제품(서비스) 수정 팝업");
+	/*$("#detail_alm_server_modal_title").text(" 신규 제품(서비스) 수정 팝업");
     $("#detail_pdService_version_modal_sub").text("A-RMS에 신규 제품(서비스)의 정보를 수정합니다.");*/
 	if (isReadOnly) {
-		$("#regist_pdservice_version").addClass("hidden");
-		$("#extendupdate_pdservice_version").addClass("hidden");
+		$("#regist_alm_server").addClass("hidden");
+		$("#extendupdate_alm_server").addClass("hidden");
 		$("#new_pdservice_save").removeClass("hidden");
 	}
 	else {
-		$("#regist_pdservice_version").addClass("hidden");
+		$("#regist_alm_server").addClass("hidden");
 		$("#new_pdservice_save").addClass("hidden");
-		$("#extendupdate_pdservice_version").removeClass("hidden");
+		$("#extendupdate_alm_server").removeClass("hidden");
 	}
 
 	// 데이터 셋팅
@@ -597,7 +597,7 @@ function modalPopupDataBinding(isReadOnly) {
 // 신규 버전 등록 버튼
 ////////////////////////////////////////////////////////////////////////////////////////
 function save_btn_click() {
-	$("#regist_pdservice_version").click(function () {
+	$("#regist_alm_server").click(function () {
 
 		const cTitle = $("#popup_view_pdservice_name").val();
 		const cVersion = $("#popup_view_pdservice_version").val();
@@ -687,7 +687,7 @@ function update_btn_click() {
 // 버전 팝업 변경 버튼
 ////////////////////////////////////////////////////////////////////////////////////////
 function modalPopupUpdate_btn_click() {
-	$("#extendupdate_pdservice_version").click(function () {
+	$("#extendupdate_alm_server").click(function () {
 
 		var send_data = {
 			c_id: selectVersion,
